@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username', 'password' , 'status', 'activation_code',
+        'name', 'email', 'username', 'password' , 'status', 'activation_code','profilepicture_filename',
     ];
 
     /**
@@ -27,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getProfilepictureFilenameAttribute()
+    {
+        if (! $this->attributes['profilepicture_filename']) {
+            return '/assets/img/default-avatar.png';
+        }
+
+        return '/assets/img/users/'.$this->attributes['profilepicture_filename'];
+    }
 }
