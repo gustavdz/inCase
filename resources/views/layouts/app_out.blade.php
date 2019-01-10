@@ -92,6 +92,7 @@
 <script src="{{asset('assets/js/argon.min.js%3Fv=1.0.0')}}"></script>
 <!-- Demo JS - remove this in your project -->
 <script src="{{asset('assets/js/demo.min.js')}}"></script>
+@yield('scripts')
 </body>
 
 </html>

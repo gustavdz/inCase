@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Page plugins -->
+    @yield('css_optional')
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/argon.min.css%3Fv=1.0.0.css')}}" type="text/css">
 </head>
@@ -559,9 +561,9 @@
 <!-- Optional JS -->
 <script src="{{asset('assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
 <script src="{{asset('assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
-<!-- Argon JS -->
+@yield('js_optional')
+<!-- Argon JS-->
 <script src="{{asset('assets/js/argon.min.js%3Fv=1.0.0')}}"></script>
-<!-- Demo JS - remove this in your project -->
-<script src="{{asset('assets/js/demo.min.js')}}"></script>
+@yield('scripts')
 </body>
 </html>
