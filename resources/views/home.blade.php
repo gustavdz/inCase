@@ -297,6 +297,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 @section('scripts')
     <script>
@@ -312,17 +313,12 @@
                 editable:true,
                 defaultView: 'agendaWeek',
                 events:[
-                    {id:1,title:"Call with Dave",start:"2018-11-18",allDay:!0,className:"bg-red",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-                    {id:2,title:"Lunch meeting",start:"2018-11-21",allDay:!0,className:"bg-orange",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-                    {id:3,title:"All day conference",start:"2018-11-29",allDay:!0,className:"bg-green",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-                    {id:4,title:"Meeting with Mary",start:"2018-12-01",allDay:!0,className:"bg-blue",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-                    {id:5,title:"Winter Hackaton",start:"2018-12-03",allDay:!0,className:"bg-red",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-                    {id:6,title:"Digital event",start:"2018-12-07",allDay:!0,className:"bg-warning",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-                    {id:7,title:"Marketing event",start:"2018-12-10",allDay:!0,className:"bg-purple",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-                    {id:8,title:"Dinner with Family",start:"2018-12-19",allDay:!0,className:"bg-red",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-                    {id:9,title:"Black Friday",start:"2018-12-23",allDay:!0,className:"bg-blue",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-                    {id:10,title:"Cyber Week",start:"2018-12-02",allDay:!0,className:"bg-yellow",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."}
+                    @foreach($events as $event)
+                    {id:{{$event->id}},title:"{{$event->title}}",start:"{{$event->start}}",end:"{{$event->end}}",allDay:!{{$event->allDay}},className:"{{$event->className}}",description:"{{$event->description}}"},
+                    @endforeach
+                    {id:2,title:"Call with Dave",start:"2019-01-11 09:30:00",allDay:!0,className:"bg-green",description:"Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
                 ],
+
                 eventDrop: function(event, delta, revertFunc) {
 
                     alert(event.title + " was dropped on " + event.start.format());
@@ -373,9 +369,49 @@
                             }
                         };
 
-                        ""!=a?(e.fullCalendar("renderEvent",{id:t.Job(),title:a,start:$(".new-event--start").val(),end:$(".new-event--end").val(),allDay:!0,className:$(".event-tag input:checked").val()},!0),$(".new-event--form")[0].reset(),$(".new-event--title").closest(".form-group").removeClass("has-danger"),$("#new-event").modal("hide")):($(".new-event--title").closest(".form-group").addClass("has-danger"),$(".new-event--title").focus())}),
+                        ""!=a?(e.fullCalendar("renderEvent",{
+                            id:t.Job(),
+                            title:a,
+                            start:$(".new-event--start").val(),
+                            end:$(".new-event--end").val(),
+                            allDay:!0,
+                            className:$(".event-tag input:checked").val()
+                        },!0),
+                    $(".new-event--form")[0].reset(),$(".new-event--title").closest(".form-group").removeClass("has-danger"),$("#new-event").modal("hide")):($(".new-event--title").closest(".form-group").addClass("has-danger"),$(".new-event--title").focus())
+                    }),
 
-                    $("body").on("click","[data-calendar]",function(){var a=$(this).data("calendar"),t=$(".edit-event--id").val(),n=$(".edit-event--title").val(),i=$(".edit-event--description").val(),o=$("#edit-event .event-tag input:checked").val(),l=e.fullCalendar("clientEvents",t);"update"===a&&(""!=n?(l[0].title=n,l[0].description=i,l[0].className=[o],console.log(o),e.fullCalendar("updateEvent",l[0]),$("#edit-event").modal("hide")):($(".edit-event--title").closest(".form-group").addClass("has-error"),$(".edit-event--title").focus())),"delete"===a&&($("#edit-event").modal("hide"),setTimeout(function(){swal({title:"Are you sure?",text:"You won't be able to revert this!",type:"warning",showCancelButton:!0,buttonsStyling:!1,confirmButtonClass:"btn btn-danger",confirmButtonText:"Yes, delete it!",cancelButtonClass:"btn btn-secondary"}).then(a=>{a.value&&(e.fullCalendar("removeEvents",t),swal({title:"Deleted!",text:"The event has been deleted.",type:"success",buttonsStyling:!1,confirmButtonClass:"btn btn-primary"}))})},200))}),
+                    $("body").on("click", "[data-calendar]",function(){
+                        var a=$(this).data("calendar"),
+                            t=$(".edit-event--id").val(),
+                            n=$(".edit-event--title").val(),
+                            i=$(".edit-event--description").val(),
+                            o=$("#edit-event .event-tag input:checked").val(),
+                            l=e.fullCalendar("clientEvents",t);
+                        "update"===a&&(""!=n?(
+                            l[0].title=n,
+                            l[0].description=i,
+                            l[0].className=[o],
+                            console.log(o),
+                            e.fullCalendar("updateEvent",l[0]),
+                            $("#edit-event").modal("hide")
+                        ):(
+                            $(".edit-event--title").closest(".form-group").addClass("has-error"),
+                            $(".edit-event--title").focus())
+                        ),
+
+                        "delete"===a&&(
+                            $("#edit-event").modal("hide"),
+                            setTimeout(function(){
+                                swal({title:"Are you sure?",text:"You won't be able to revert this!",type:"warning",showCancelButton:!0,buttonsStyling:!1,confirmButtonClass:"btn btn-danger",confirmButtonText:"Yes, delete it!",cancelButtonClass:"btn btn-secondary"}).then(
+                                    a=>{
+                                        a.value&&(e.fullCalendar("removeEvents",t),
+                                        swal({title:"Deleted!",text:"The event has been deleted.",type:"success",buttonsStyling:!1,confirmButtonClass:"btn btn-primary"})
+                                        )
+                                    })
+                            },
+                            200)
+                        )
+                    }),
 
                     $("body").on("click","[data-calendar-view]",function(a){a.preventDefault(),$("[data-calendar-view]").removeClass("active"),$(this).addClass("active");var t=$(this).attr("data-calendar-view");e.fullCalendar("changeView",t)}),
 

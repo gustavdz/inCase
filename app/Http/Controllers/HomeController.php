@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::find(Auth::user()->id);
-        return view('home')->with(compact('user'));
+        $events = Events::all();
+        return view('home')->with(compact('user','events'));
     }
 }
