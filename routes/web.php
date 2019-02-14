@@ -20,3 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/verify-user/{code}', 'Auth\RegisterController@activateUser')->name('activate.user');
+
+Route::post('meeting/{id}/update','MeetingsController@update_meeting')->name('meeting.update');
+Route::post('meeting/{id}/meetingdrop','MeetingsController@drop_meeting')->name('meeting.drop');
+Route::post('meeting/{id}/meetingresize','MeetingsController@resize_meeting')->name('meeting.resize');
+Route::post('meeting/{id}/meetingdelete','MeetingsController@delete_meeting')->name('meeting.delete');
+Route::post('meeting/store','MeetingsController@add_meeting')->name('meeting.store');
+
+Route::get('/meetings', 'MeetingsController@index')->name('meetings');

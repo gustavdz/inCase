@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Home')
+@section('title','Citas')
 @section('breadcrumbs')
     <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
     <li class="breadcrumb-item active" aria-current="page">@yield('title')</li>
@@ -12,115 +12,7 @@
     <script src="{{asset('assets/vendor/fullcalendar/dist/fullcalendar.min.js')}}"></script>
     <script src="{{asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js')}}"></script>
 @endsection
-@section('cards')
-    <div class="col-xl-3 col-md-6">
-        <div class="card card-stats">
-            <!-- Card body -->
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Trámites activos</h5>
-                        <span class="h2 font-weight-bold mb-0">350,897</span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                            <i class="ni ni-active-40"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Desde el mes anterior</span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card card-stats">
-            <!-- Card body -->
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Clientes</h5>
-                        <span class="h2 font-weight-bold mb-0">2,356</span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                            <i class="ni ni-chart-pie-35"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Desde el mes anterior</span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card card-stats">
-            <!-- Card body -->
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Recaudacion</h5>
-                        <span class="h2 font-weight-bold mb-0">924</span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                            <i class="ni ni-money-coins"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Desde el mes anterior</span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card card-stats">
-            <!-- Card body -->
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Asistentes</h5>
-                        <span class="h2 font-weight-bold mb-0">5</span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                            <i class="ni ni-chart-bar-32"></i>
-                        </div>
-                    </div>
-                </div>
-                    <p class="mt-3 mb-0 text-sm">
-                        <span class="text-success mr-2"></i> 80%</span>
-                        <span class="text-nowrap">De los casos activos</span>
-                    </p>
-            </div>
-        </div>
-    </div>
-@endsection
-
 @section('content')
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="card">
-                <div class="card-header bg-transparent">
-                    Dashboard
-                </div>
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col">
             <!-- Fullcalendar -->
@@ -131,8 +23,8 @@
                     <h5 class="h3 mb-0">Calendar</h5>
                     <div class="row">
                         <div class="text-left col-md-4">
-                            <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="month">Month</a>
-                            <a href="#" class="btn btn-sm btn-neutral active" data-calendar-view="agendaWeek">Week</a>
+                            <a href="#" class="btn btn-sm btn-neutral active" data-calendar-view="month">Month</a>
+                            <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="agendaWeek">Week</a>
                             <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="agendaDay">Day</a>
                         </div>
                         <div class="text-center col-md-4"><h6 class="fullcalendar-title h2 mb-0">Fullcalendar</h6></div>
@@ -242,62 +134,6 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-8">
-            <div class="card bg-default">
-                <div class="card-header bg-transparent">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                            <h5 class="h3 text-white mb-0">Sales value</h5>
-                        </div>
-                        <div class="col">
-                            <ul class="nav nav-pills justify-content-end">
-                                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
-                                    <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                                        <span class="d-none d-md-block">Month</span>
-                                        <span class="d-md-none">M</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
-                                    <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                                        <span class="d-none d-md-block">Week</span>
-                                        <span class="d-md-none">W</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <!-- Chart -->
-                    <div class="chart">
-                        <!-- Chart wrapper -->
-                        <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-header bg-transparent">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                            <h5 class="h3 mb-0">Total orders</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <!-- Chart -->
-                    <div class="chart">
-                        <canvas id="chart-bars" class="chart-canvas"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 @endsection
 @section('scripts')
     <script>
@@ -312,7 +148,7 @@
                     selectable:true,
                     selectHelper:true,
                     editable:true,
-                    defaultView: 'agendaWeek',
+                    defaultView: 'month',
                     events:[
                             @foreach($meetings as $meeting)
                         {
